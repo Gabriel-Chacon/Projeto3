@@ -6,8 +6,8 @@ public class Item {
     private long tamanho;
     
     public Item(long tempo,long bytes){
-        this.tempo=tempo;
-        this.tamanho=bytes;
+        this.tempo = tempo;
+        this.tamanho = bytes;
     }
     
     public long getTempo(){
@@ -18,12 +18,11 @@ public class Item {
     }
     
     void alterarTempo(long tempo){
-        this.tempo=tempo;
+        this.tempo = tempo;
     }
     
     @Override
     public String toString(){
         return String.format("Tempo: %d, Tamanho: %d", tempo,tamanho);
-
     }
 }
