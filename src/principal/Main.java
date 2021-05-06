@@ -14,14 +14,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         try {
-            StringBuilder sb1 = new StringBuilder();
-            StringBuilder sb2 = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             
-            sb1.append("Quantidade de recursos em cache,Total de bytes economizados\n");
-            sb2.append("Quantidade total de requisições,Total de bytes economizados\n");
+            sb.append("Quantidade de recursos em cache,Quantidade total de requisições,Total de bytes economizados\n");
             
-            String fileName1 = "Projeto3_RXB.csv";
-            String fileName2 = "Projeto3_TRXB.csv";
+            String fileName1 = "Projeto3.csv";
             
             Cache cache = new Cache();
             
@@ -45,23 +42,20 @@ public class Main {
                     cache.alterarRegistro((String)entrada.get(1), novoItem);
                     
                 }
-                sb1.append(cache.getQuantidade());
-                sb1.append(",");
-                sb1.append(cache.getBytesEconomizados());
-                sb1.append("\n");
+                sb.append(cache.getQuantidade());
+                sb.append(",");
+                sb.append(cache.getTotalRequests());
+                sb.append(",");
+                sb.append(cache.getBytesEconomizados());
+                sb.append("\n");
                 
-                sb2.append(cache.getTotalRequests());
-                sb2.append(",");
-                sb2.append(cache.getBytesEconomizados());
-                sb2.append("\n");
             }
             
             long endTime = System.nanoTime();
             long timeElapsed = endTime - startTime;
             
             System.out.println(cache.toString());
-            System.out.println(csvExport(sb1, fileName1));
-            System.out.println(csvExport(sb2, fileName2));
+            System.out.println(csvExport(sb, fileName1));
             System.out.printf("Finalizado em %.3f segundos\n", (double)timeElapsed / 1000000000);
             
         } catch (IOException e) {
