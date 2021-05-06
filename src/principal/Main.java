@@ -15,20 +15,22 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             System.out.println("Digite o caminho do arquivo: ");
             String path = sc.nextLine();
+            sc.close();
+            
             for (String line : Files.readAllLines(Paths.get(path))) {
-                ArrayList<String> entrada=new ArrayList<>();
+                ArrayList<String> entrada = new ArrayList<>();
                 for (String part : line.split("\\s+")) {
                     entrada.add(part);
                 }
-
+                
                 Item novoItem = new Item(Long.parseLong(entrada.get(0)),Long.parseLong(entrada.get(2)));
                 if(!cache.buscarChave((String)entrada.get(1), novoItem))
-                    cache.addItem((String)entrada.get(1), novoItem);
+                    cache.addRegistro((String)entrada.get(1), novoItem);
             }
+            
             System.out.println(cache.toString());
         } catch (Exception e) {
-            e.toString();
+        	System.out.println(e.toString());
         }
-        
     }
 }

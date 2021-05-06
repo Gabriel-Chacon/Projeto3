@@ -10,15 +10,15 @@ public class Cache {
     private long bytesEconomizados;
     
     public Cache(){
-        this.totalBytes=0;
-        this.bytesEconomizados=0;
-        this.quantidade=0;
-        this.mapa=new HashMap<>();
+        this.totalBytes = 0;
+        this.bytesEconomizados = 0;
+        this.quantidade = 0;
+        this.mapa = new HashMap<>();
     }
     
-    public void addItem(String recurso,Item item){
+    public void addRegistro(String recurso,Item item){
         mapa.put(recurso,item);
-        totalBytes+=item.getTamanho();
+        totalBytes += item.getTamanho();
         this.quantidade++;
     }
     
@@ -26,7 +26,7 @@ public class Cache {
         if(mapa.containsKey(recurso)){
             Item recursoEmCache = mapa.get(recurso);
             recursoEmCache.alterarTempo(item.getTempo());
-            this.bytesEconomizados+=item.getTamanho();
+            this.bytesEconomizados += item.getTamanho();
             return true;
         }
         else return false;
@@ -39,7 +39,7 @@ public class Cache {
         for (Map.Entry<String, Item> entry : mapa.entrySet()) {
             sb.append(String.format("Recurso: %s , %s\n", entry.getKey(),entry.getValue()));
         }
-        sb.append(String.format("Quantidade total de p√°ginas em cache: %d\n", this.quantidade));
+        sb.append(String.format("Quantidade total de p·ginas em cache: %d\n", this.quantidade));
         sb.append(String.format("Tamanho total: %d\n", this.totalBytes));
         sb.append(String.format("Total de bytes economizados: %d\n", this.bytesEconomizados));
         return sb.toString();
